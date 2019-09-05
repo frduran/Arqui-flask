@@ -9,7 +9,7 @@ function totalRows(){
 }
 
 function pages(){
-  var ul = $('.pagination').length;
+  var ul = $('.pagination').children().length;
   console.log("PAGINAS", ul)
   return ul
 }
@@ -45,21 +45,23 @@ function agregarPag(contador){
     var totalPages = Math.ceil(contador/maxRows);
     console.log("total", contador, "paginas", totalPages)
     var ultimaPag = pages()
+    console.log(ultimaPag, totalPages, "COMPARAR")
     // agregar una página
     if (totalPages > ultimaPag){
       console.log("AGREGAR PAGINA");
-      var siguiente = ultimaPag ++
+      var siguiente = ultimaPag + 1
       console.log(ultimaPag, "SIGUIENTE", siguiente)
       
-      $('.pagination').append('<li data-page="'+siguiente+'"><a class="page-link" href="#">'+siguiente+'</a></li>').show()
+      $('.pagination').append('<li data-page="'+siguiente+'"><a class="page-link"'+siguiente+' href="#">'+siguiente+'</a></li>')
       showMessage(totalRows());
     }    
   }
 }
 
-$('.pagination li').click(function(){
+$("ul.pagination").on('click', 'li', function(){
+  console.log("CLICK")
   var pageNum = $(this).attr('data-page');
-  
+  console.log("Estas en la pagina", pageNum)
   var maxRows = 5;
   var rows =  totalRows()
   var totalPages = Math.ceil(rows/maxRows);
@@ -96,7 +98,7 @@ socket.emit('connection',{
 socket.on('response', function(msg){
     var joke = $('<div> "'+msg+'"</div>');
     $('#joke').append(joke)
-    console.log(msg)
+    //console.log(msg)
 })
 
 var form = $( '.submit-button' ).on('click',function(e) {
@@ -120,7 +122,7 @@ socket.on('response-username', function(data){
         var row = $('<td class="table-row"><span class="">' + data[1][key] + '</span></td>');
         $('#users-list').append(row)
     });
-    console.log("USUARIOS", USERS)
+    //console.log("USUARIOS", USERS)
     //$('.welcome-user').append(name)
     $('#table').append(row_m)
     var r = totalRows()
@@ -129,12 +131,14 @@ socket.on('response-username', function(data){
 })
 
 $('.send-button').on('click', function(){
-    console.log("Enviando mensaje")
+    //console.log("Enviando mensaje")
     totalRows();
     var text = $('.message').val()
-    socket.emit('send-message',text);
-    
-    $('.message').val(' ');
+    if (text){
+      socket.emit('send-message',text);
+      $('.message').val(' ');
+    }
+   
     /*   var row = $('<td class="table-row"><span>'+text+'</span></td>');
     $('#table').append(row) */
 })
@@ -146,8 +150,8 @@ $('.message').keydown(function(e) {
   })  
 
 socket.on('receive-message', function(data){
-    console.log("recibir",data)
-    var row = $('<td class="table-row"><span>'+data['sender']+' <span>'+data['time']+'</span>: </span><span>'+data['msg']+'</span></td>');
+    //console.log("recibir",data)
+    var row = $('<td class="table-row"><span class="sender">'+data['sender']+' <span class="time">'+data['time']+'</span>: </span><span>'+data['msg']+'</span></td>');
     $('#table').append(row)
     var r = totalRows()
     console.log("rows", r)

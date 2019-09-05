@@ -29,7 +29,6 @@ def response(value):
     print(value)
     
 
-
 @socketio.on('send-message')
 def send_message(msg):
     print("request",request.sid)
@@ -52,13 +51,12 @@ def user(username):
     users[request.sid] = username
     print(users)
     socketio.emit("response-username",[username, users])
-    #socketio.send(json['user'], broadcast=True)
 
 
 @socketio.on('response-username')
 def response_username(lista):    
     print(lista)
-    #socketio.send(json['user'], broadcast=True)
+    
 
 if __name__ == '__main__':
     socketio.run(app, debug=True)

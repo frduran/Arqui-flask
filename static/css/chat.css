@@ -63,3 +63,15 @@ button {
     width:15%;
     background: lightblue;
 }
+
+.pagination li{
+    display: inline;
+}
+
+.sender{
+    font-weight: bold;
+}
+
+.time{
+    font-weight: bold;
+}
