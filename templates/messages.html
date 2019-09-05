@@ -1,0 +1,29 @@
+
+<div class="welcome-user">
+
+</div>
+<div class="board"> 
+    <table id="table">
+        <tbody>
+            <tr>
+                <td>TEST</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="users">
+    
+</div>
+<input class="message" type="text" name="message" placeholder="Escribe aquí­..." />
+<button class="enviar" type="submit">Enviar</button>
+
+<script>
+    $('.enviar').on('click', function(){
+        var text = $('.message').val()
+        var row = $('<td class="table-row"><span>'+text+'</span></td>');
+    })
+    
+</script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
+ 
