@@ -90,7 +90,7 @@ $('.pagination li').click(function(){
 });
 
 var USERS = [];
-var socket = io()
+const socket = io();
 socket.emit('connection',{
     data: 'User Connected'
     })
