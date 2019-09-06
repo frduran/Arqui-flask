@@ -187,7 +187,8 @@ $('.message').keydown(function(e) {
 socket.on('receive-message', function(data){
     var now = new Date();
     console.log(now)
-    var format = now.getDate() + '-' + now.getMonth() + '-' + now.getFullYear() + ' ' + now.getHours() + ':' + now.getMinutes()
+    var months = {0:1, 1:2, 2:3, 3:4, 4:5, 5:6, 6:7, 7:8, 8:9, 10:11, 11:12}
+    var format = now.getDate() + '-' + months[now.getMonth()] + '-' + now.getFullYear() + ' ' + now.getHours() + ':' + now.getMinutes()
     /* var time = Date.UTC(now.getUTCFullYear(),now.getUTCMonth(), now.getUTCDate() , 
     now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds(), now.getUTCMilliseconds());
     console.log(date)
