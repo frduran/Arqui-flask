@@ -80,6 +80,10 @@ $("ul.pagination").on('click', 'li', function(){
     $('td:first').hide()
   }
   var c = 0;
+  $('#users-list td:gt(0)').each(function(){
+    $(this).show()
+  })
+
   $('td:gt(0)').each(function(){
     c++;
     if(c < start || c > end){
