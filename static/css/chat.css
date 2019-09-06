@@ -35,17 +35,10 @@ button {
 }
 
 #table{
-    display: inline;
-
-    .username {
-        font-weight: bold;
-      }
-      
-    .text {
-        font-weight: bold;
-    }
-  }
-
+    width: auto;
+    height: auto;
+    white-space: normal;
+}
 .table-row{
     display: block;
   }
@@ -55,13 +48,21 @@ button {
     width: 70%;
     margin-right: 30px;
     background: lightgrey;
+    white-space: normal;
 }
 
 .users{
     overflow: hidden;
     height: 80%;
     width:15%;
+    white-space: normal;
     background: lightblue;
+}
+
+#users-list{
+    white-space: normal;
+    width: auto;
+    height: auto;
 }
 
 .pagination li{

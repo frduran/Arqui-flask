@@ -57,7 +57,6 @@ function agregarPag(contador){
   }
 }
 
-
 //$('.pagination li').click(function(){
 $("ul.pagination").on('click', 'li', function(){
   console.log("CLICK")
@@ -117,18 +116,35 @@ var form = $( '.submit-button' ).on('click',function(e) {
     socket.emit('user',username)
 })
 
+socket.on('disconnect-username', function(username){
+  console.log("DISCONNECT");
+  $('.'+username).hide()
+})
+
 socket.on('response-username', function(data){
     var name = $('<div>Bienvenido '+data[0]+'</div>');
     var row_m = $('<td class="table-row"><span class="">' + data[0] + ' se unió a la conversación</span></td>');    
     var keys = Object.keys(data[1]);
     var row = $('<td class="table-row"><span class="">' + data[0] + '</span></td>');
     $('#users-list').append(row).show()
-    /* keys.forEach(function(key){
+    console.log("PUSH USERS")
+    USERS.push(data[0])
+    var count = $('#users-list td').length;
+    console.log("LENGTH USERS", count)
+   
+    console.log("DELETING")
+    $("#users-list td").remove(); 
+    var count = $('#users-list td').length;
+    console.log("LENGTH USERS", count)
+    
+    USERS.forEach(function(u){
+      console.log(u);
+    })
+    keys.forEach(function(key){
         USERS.push(key) 
-        var row = $('<td class="table-row"><span class="">' + data[1][key] + '</span></td>');
+        var row = $('<td class="table-row"><span class="'+data[1][key]+'">' + data[1][key] + '</span></td>');
         $('#users-list').append(row).show()
-  }); */
-      
+    });
     
     $('#table').append(row_m)
     var r = totalRows()

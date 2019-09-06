@@ -56,6 +56,14 @@ def user(username):
 @socketio.on('response-username')
 def response_username(lista):    
     print(lista)
+
+@socketio.on('disconnect')
+def test_disconnect():
+    print(request.sid, 'Client disconnected')
+    username = users[request.sid]
+
+    socketio.emit("disconnect-username",username)
+    del users[request.sid]
     
 
 if __name__ == '__main__':
