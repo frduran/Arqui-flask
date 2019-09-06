@@ -42,8 +42,9 @@ def joke():
 @socketio.on('send-message')
 def send_message(msg):
     print("request",request.sid)
-    time1 = time.time()
-    format_time = datetime.datetime.fromtimestamp(time1).strftime('%Y-%m-%d %H:%M:%S')
+    time1 = time.localtime()
+    format_time = str(time1.tm_hour) + ':'+ str(time1.tm_min) + ' '+ str(time1.tm_mday) + '-'+ str(time1.tm_mon) + '-'+ str(time1.tm_year)
+    #format_time = datetime.datetime.fromtimestamp(time1).strftime('%Y-%m-%d %H:%M:%S')
     print(format_time)
     data = {'msg':msg, 'sender':users[request.sid], 'time':format_time}
     print("message {}".format(msg))

@@ -37,13 +37,13 @@ button {
 #table{
     width: auto;
     height: auto;
-    white-space: normal;
+    white-space: pre-line;
     overflow: auto;
 }
 .table-row{
     display: block;
     overflow: auto;
-    white-space: normal;
+    white-space: pre-line;
   }
 .board{
     float:left;
@@ -51,7 +51,7 @@ button {
     width: 90%;
     margin-right: 30px;
     background: lightgrey;
-    white-space: normal;
+    white-space: pre-line;
 }
 
 .users{
