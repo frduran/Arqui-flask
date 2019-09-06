@@ -79,9 +79,9 @@ $("ul.pagination").on('click', 'li', function(){
     $('td:first').hide()
   }
   var c = 0;
-  $('#users-list td:gt(0)').each(function(){
+  /* $('#users-list td:gt(0)').each(function(){
     $(this).show()
-  })
+  }) */
 
   $('td:gt(0)').each(function(){
     c++;
@@ -99,15 +99,23 @@ socket.emit('connection',{
     data: 'User Connected'
     })
 
-socket.on('response', function(msg){
-    var joke = $('<div> "'+msg+'"</div>');
-    $('#joke').append(joke)
+/* socket.on('response', function(msg){
+  console.log(msg)
+     var joke = $('<div> "'+msg+'"</div>');
+    $('#joke').append(joke) 
+}) */
+
+socket.on('joke', function(msg){
+  console.log(msg)
+  var joke = $('<div> "'+msg+'"</div>');
+  $('#joke').append(joke)
 })
 
 var form = $( '.submit-button' ).on('click',function(e) {
     e.preventDefault();
     var username = $( 'input.username' ).val()
     $('.login-page').hide();
+    $('#joke').show()
     $('#message-title').show()
     $('.board').show();
     $('.users').show();
@@ -125,26 +133,26 @@ socket.on('response-username', function(data){
     var name = $('<div>Bienvenido '+data[0]+'</div>');
     var row_m = $('<td class="table-row"><span class="">' + data[0] + ' se unió a la conversación</span></td>');    
     var keys = Object.keys(data[1]);
-    var row = $('<td class="table-row"><span class="">' + data[0] + '</span></td>');
-    $('#users-list').append(row).show()
+    /* var row = $('<td class="table-row"><span class="">' + data[0] + '</span></td>');
+    $('#users-list').append(row).show() */
     console.log("PUSH USERS")
     USERS.push(data[0])
-    var count = $('#users-list td').length;
+    /* var count = $('#users-list td').length;
     console.log("LENGTH USERS", count)
    
     console.log("DELETING")
     $("#users-list td").remove(); 
     var count = $('#users-list td').length;
-    console.log("LENGTH USERS", count)
+    console.log("LENGTH USERS", count) */
     
     USERS.forEach(function(u){
       console.log(u);
     })
-    keys.forEach(function(key){
+    /* keys.forEach(function(key){
         USERS.push(key) 
         var row = $('<td class="table-row"><span class="'+data[1][key]+'">' + data[1][key] + '</span></td>');
         $('#users-list').append(row).show()
-    });
+    }); */
     
     $('#table').append(row_m)
     var r = totalRows()
@@ -158,6 +166,16 @@ $('.send-button').on('click', function(){
       socket.emit('send-message',text);
       $('.message').val(' ');
     }
+})
+
+$('.joke-button').on('click', function(){
+  console.log("CUENTAME UN CHISTE")
+  socket.emit('tell-joke')
+  /* var text = $('.message').val()
+  if (text){
+    socket.emit('send-message',text);
+    $('.message').val(' ');
+  } */
 })
 
 $('.message').keydown(function(e) {

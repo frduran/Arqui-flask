@@ -31,7 +31,7 @@ button {
 
 .message{
     display: block;
-    width: 80%
+    width: 90%
 }
 
 #table{
@@ -45,7 +45,7 @@ button {
 .board{
     float:left;
     height: 80%;
-    width: 70%;
+    width: 90%;
     margin-right: 30px;
     background: lightgrey;
     white-space: normal;

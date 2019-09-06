@@ -17,16 +17,26 @@ def index():
 @socketio.on('connection')
 def handle_connection(msg):
     print(str(msg)) 
+    socketio.emit('response','ok')
+    #url = "https://api.chucknorris.io/jokes/random"
+    #response = requests.request("GET", url)
+    #text = json.loads(response.text) 
+    #value = text['value']
+    #print(value)
+    #socketio.emit('response',value)    
+
+@socketio.on('response')
+def response(value):
+    print(value)
+
+@socketio.on('tell-joke')
+def joke():
     url = "https://api.chucknorris.io/jokes/random"
     response = requests.request("GET", url)
     text = json.loads(response.text) 
     value = text['value']
     print(value)
-    socketio.emit('response',value)   
-
-@socketio.on('response')
-def response(value):
-    print(value)
+    socketio.emit('joke',value)   
     
 
 @socketio.on('send-message')
