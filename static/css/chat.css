@@ -38,9 +38,12 @@ button {
     width: auto;
     height: auto;
     white-space: normal;
+    overflow: auto;
 }
 .table-row{
     display: block;
+    overflow: auto;
+    white-space: normal;
   }
 .board{
     float:left;
