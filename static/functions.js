@@ -52,13 +52,13 @@ function agregarPag(contador){
       var siguiente = ultimaPag + 1
       console.log(ultimaPag, "SIGUIENTE", siguiente)
       
-      $('.pagination').append('<li data-page="'+siguiente+'"><a class="page-link"'+siguiente+' href="#">'+siguiente+'</a></li>')
+      $('.pagination').append('<li data-page="'+siguiente+'"><a class="page-link" href="#">'+siguiente+'</a></li>').show()
       showMessage(totalRows());
     }    
   }
 }
 
-$("ul.pagination").on('click', 'li', function(){
+$('.pagination li').click(function(){
   console.log("CLICK")
   var pageNum = $(this).attr('data-page');
   console.log("Estas en la pagina", pageNum)
