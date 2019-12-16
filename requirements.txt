@@ -5,3 +5,4 @@ requests-unixsocket==0.1.5
 eventlet==0.17.4
 gunicorn==18.0
 python-socketio==4.3.1
+jinja2
